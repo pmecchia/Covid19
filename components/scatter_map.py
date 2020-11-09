@@ -1,6 +1,6 @@
-import pandas as pd
 import plotly.express as px
-from config import *
+from config import MAPBOX_ACCESS_TOKEN
+from app import dataframes
 
 
 
@@ -21,7 +21,7 @@ def plot_map(lat=46.4,lon=0.5,zoom=3.5):
         "#dc9e00",]
     
     fig = px.scatter_mapbox(
-        df_last_update,
+        dataframes["df_last_update"],
         lat = "lat",
         lon = "long",
         color = "nb_pos_cum",

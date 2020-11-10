@@ -1,6 +1,7 @@
 import plotly.express as px
 from config import MAPBOX_ACCESS_TOKEN
-from app import dataframes
+from utils.data import DF_LAST_UPDATE
+
 
 
 
@@ -19,9 +20,10 @@ def plot_map(lat=46.4,lon=0.5,zoom=3.5):
         "#eaa900",
         "#e0a200",
         "#dc9e00",]
-    
+
+
     fig = px.scatter_mapbox(
-        dataframes["df_last_update"],
+        DF_LAST_UPDATE,
         lat = "lat",
         lon = "long",
         color = "nb_pos_cum",
@@ -40,5 +42,4 @@ def plot_map(lat=46.4,lon=0.5,zoom=3.5):
             hovertemplate=("%{customdata[3]}<br>Confirmed:"
                           " %{customdata[0]}<br>Deaths: %{customdata[1]}@<br>Death Rate: %{customdata[2]}")
         )
-
     return fig

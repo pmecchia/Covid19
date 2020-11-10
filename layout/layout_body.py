@@ -3,6 +3,9 @@ import dash_core_components as dcc
 import dash_html_components as html
 from config import DEP_LABELS,TIMESTAMP_LABELS
 
+
+
+
 #Confirm/Death Table
 
 departments_tabs = dbc.Card(
@@ -17,30 +20,16 @@ departments_tabs = dbc.Card(
 france_map=dbc.Card(
     dbc.CardBody(
         [
-            html.Div(
-                [
-                    html.Div(
-                        
-                        dcc.Tabs(
-                            id="middle-map-tab",
-                            value="departments-france-map-tab",
-                            colors={
-                                "border": None,
-                                "primary": None,
-                                "background": None,
-                            },
-                        )
-                    ),
-                ],
-                className="top-bar-france-map",
-            ),
+           
             html.Div(
                 dcc.Graph(
                     id="france-map",
-                    style={"height": "60vh"},
+                    style={"height": "50vh",
+                          },
                 ),
                 id="map-container",
             ),
+            
         ]
     ),
 )
@@ -70,7 +59,7 @@ confirmed_chart=dbc.Card(
                         id="confirmed-timeline",
                         # figure=cases_chart(),
                         config={"responsive": False},
-                        style={"height": "20vh"},
+                        style={"height": "40vh"},
                         className='left-chart-figure"',
                     ),
                 ),
@@ -105,9 +94,11 @@ deaths_chart=dbc.Card(
                         id="deaths-timeline",
                         # figure=cases_chart(),
                         config={"responsive": False},
-                        style={"height": "20vh"},
+                        style={"height": "40vh"},
                         className='right-chart-figure"',
                     ),
+                    style={"padding-top": "8px",},
+                    color="#32a852",
                 ),
                 id="deaths-chart-container",
             ),
@@ -173,11 +164,13 @@ build_layout = dbc.Container(fluid=True, children=[
                                 deaths_chart,
                                 className="top-bottom-right-chart",
                                 width=6,
-                            )
-                        ]
-                    )
-                )
-            )
-        ]
-    )
-])
+                            ),
+                        ],
+                        no_gutters=True,
+                    ),
+                ),
+            ),
+        ],
+    ),
+],
+)

@@ -58,3 +58,7 @@ def load_datasets():
 
     return all_df
                 
+DATAFRAMES=load_datasets()
+DF_DEPARTMENTS=DATAFRAMES["departments"]
+DF_FRANCE=DATAFRAMES["country"]
+DF_LAST_UPDATE=DATAFRAMES["last_update"]

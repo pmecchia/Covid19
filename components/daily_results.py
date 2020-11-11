@@ -16,7 +16,10 @@ def daily_results(department="France") -> List[dbc.Col]:
     else:
         df_selected=DF_LAST_UPDATE.loc[DF_LAST_UPDATE["dep_name"]==department]
         
-
+    number_new_test=df_selected.iloc[0]["nb_test"]
+    number_new_pos=df_selected.iloc[0]["nb_pos"]
+    number_new_dc=df_selected.iloc[0]["dc"]
+    new_death_rate=df_selected.iloc[0]["new_death_rate"]
     # 2. Dynamically generate list of dbc Cols. Each Col contains a single
     #    Card. Each card displays items and values 
     cards = []
@@ -28,7 +31,7 @@ def daily_results(department="France") -> List[dbc.Col]:
                     dbc.CardBody(
                         [
                             html.P(
-                                df_selected["nb_test"],
+                                f"{number_new_test:10d} new",
                                 className=f"top-bar-change-{columns.lower()}",
                             ),
                             html.H1(
@@ -52,7 +55,7 @@ def daily_results(department="France") -> List[dbc.Col]:
                     dbc.CardBody(
                         [
                             html.P(
-                                df_selected["nb_pos"],
+                                f"{number_new_pos:10d} new",
                                 className=f"top-bar-change-{columns.lower()}",
                             ),
                             html.H1(
@@ -76,7 +79,7 @@ def daily_results(department="France") -> List[dbc.Col]:
                     dbc.CardBody(
                         [
                             html.P(
-                                df_selected["new_dc"],
+                                f"{number_new_dc:10d} new",
                                 className=f"top-bar-change-{columns.lower()}",
                             ),
                             html.H1(
@@ -97,7 +100,7 @@ def daily_results(department="France") -> List[dbc.Col]:
                     dbc.CardBody(
                         [
                             html.P(
-                                round(df_selected["new_death_rate"],2),
+                                f"{new_death_rate:.2f}% change",
                                 className=f"top-bar-perc-change-{columns.lower()}",
                             ),
                             html.H1(

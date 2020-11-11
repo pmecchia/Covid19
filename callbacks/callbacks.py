@@ -3,6 +3,7 @@ from components.scatter_map import plot_map
 from components.confirmed_chart import confirmed_cases
 from components.deaths_chart import covid_deaths
 from components.daily_results import daily_results
+from components.departments_table import departments_results
 from config import data
 
 
@@ -83,3 +84,12 @@ def register_callbacks(app):
         cards = daily_results(value) 
         
         return [cards]
+    
+    #TABLE RESULTS CALLBACK
+    @app.callback(
+        Output("departments-table", "children"),
+        [Input("departments-dropdown", "value")]
+    )
+    def table_results_callback(value):
+        
+        return departments_results(value)

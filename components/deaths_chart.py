@@ -17,7 +17,7 @@ def covid_deaths(department,last_days_nb):
             x=selected_df['jour'].tail(last_days_nb),
             y=selected_df['dc'].tail(last_days_nb),
             mode="lines",
-            line={"color":"#C616C4"},
+            line={"color":"#c94904"},
             showlegend=False,
             #name="Total Confirmed Cases"
         )
@@ -26,7 +26,7 @@ def covid_deaths(department,last_days_nb):
         go.Bar(
             x=selected_df['jour'].tail(last_days_nb),
             y=selected_df['new_dc'].tail(last_days_nb),
-            marker={"color":"#C616C4"},
+            marker={"color":"#c94904"},
             showlegend=False,
             #name="New Confirmed Cases",
 
@@ -59,5 +59,6 @@ def covid_deaths(department,last_days_nb):
         xaxis={"title":"Dates"},
         yaxis={"title":"Number of deaths"},
         autosize=True,
+        margin={"r":0,"t":0,"l":0,"b":0},
     )
     return fig_deaths

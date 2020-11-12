@@ -10,7 +10,11 @@ from config import DEP_LABELS,TIMESTAMP_LABELS
 
 departments_tabs = dbc.Card(
     [
-        dbc.CardBody(id="departments-table",className="results-table",),
+        dbc.CardBody(
+            html.Div(
+                id="departments-table",className="results-table",
+            ),
+        ),
     ],
     className="results-table-div",
 )
@@ -22,17 +26,21 @@ france_map=dbc.Card(
         [
            
             html.Div(
-                dcc.Graph(
-                    id="france-map",
-                    style={"height": "50vh",
-                          },
+                dcc.Loading(
+                    dcc.Graph(
+                        id="france-map",
+                        style={"height": "50vh",
+                              },
+                    ),
+                    id="map-container",
                 ),
-                id="map-container",
             ),
             
         ]
     ),
-)
+    className="map-card",
+),
+className="france-map-container",
 
 #Chart Confirmed Cases
 
@@ -87,6 +95,7 @@ deaths_chart=dbc.Card(
                     searchable=False,
                     className="lastdays-dropdown",
                 ),
+                className="lastdays-dropdown-container"
             ),
             html.Div(
                 dcc.Loading(
@@ -121,28 +130,30 @@ build_layout = dbc.Container(fluid=True, children=[
                     className="departments-dropdown",
                 ),
                 className="departments-dropdown-container",
-                width=2,
+                width=4,
             ),
             dbc.Col(
                 dbc.Row(id="daily-results", className="top-bar-content"),
-                width=10,
+                width=8,
                 className="top-bar-content-col",
             ),
-        ]
+        ],
+        className="row-1",
     ),
+    
     dbc.Row(#TABLE AND MAP
         [   
             #TABLE
             dbc.Col(
-                departments_tabs,
+                html.Div(departments_tabs),
                 className="left-column-table-content",
-                width=2,
+                width=4,
             ),
             #MAP
             dbc.Col(
                 html.Div(france_map),
                 className="middle-column-map-content",
-                width=10,
+                width=8,
             )
         ],
         className="middle-content",
@@ -157,18 +168,21 @@ build_layout = dbc.Container(fluid=True, children=[
                             dbc.Col(
                                 confirmed_chart,
                                 className="top-bottom-left-chart",
-                                width=6,
+                                width=5,
                             ),
                             #Deaths Chart
                             dbc.Col(
                                 deaths_chart,
                                 className="top-bottom-right-chart",
-                                width=6,
+                                width=5,
                             ),
                         ],
-                        no_gutters=True,
+                        #no_gutters=True,  
+                        className="test"
                     ),
+                    className="bottom-charts"
                 ),
+                className="bottom-row" 
             ),
         ],
     ),

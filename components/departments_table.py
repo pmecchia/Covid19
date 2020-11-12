@@ -11,7 +11,7 @@ def departments_results(department):
     font_size = ".9vw"
     color_active = "#F4F4F4"
     color_inactive = "#AEAEAE"
-    color_bg = "#010914"
+    color_bg = "#000000"
     
     font_size_body = ".9vw"
     table = dash_table.DataTable(
@@ -21,6 +21,7 @@ def departments_results(department):
             {
                 "name": "Confirmed",
                 "id": "Confirmed",
+                "format": Format(group=","),
             },
             {
                 "name": "Deaths",
@@ -44,15 +45,21 @@ def departments_results(department):
             "fontWeight": "bold",
             "font": "Lato, sans-serif",
             "height": "2vw",
+            "textAlign":'left',
+            "padding": "1vw",
         },
         style_cell={
             "font-size": font_size_body,
             "font-family": "Lato, sans-serif",
+            "border-left": "0",
+            "border-right": "0",
             "border-bottom": "0.01rem solid #313841",
-            "backgroundColor": "#010915",
+            "backgroundColor": "#000000",
+            "border": "#000000",
             "color": "#FEFEFE",
             "height": "2.75vw",
-            "width":"7vw"
+            "width":"7vw",
+            "textAlign":'center',
         },
         style_cell_conditional=[
             {
@@ -63,19 +70,26 @@ def departments_results(department):
             },
             {
                 "if": {"column_id": "Confirmed",},
-                "color": "#F4B000",
+                "color": "#dc9e00",
                 #"minWidth": "4vw",
                 #"width": "33%",
                 #"maxWidth": "33%",
             },
             {
                 "if": {"column_id": "Deaths",},
-                "color": "#E55465",
+                "color": "#c94904",
                 #"minWidth": "4vw",
                 #"width": "33%",
                 #"maxWidth": "33%",
             },
         ],
+        #style_data_conditional=[                
+            #{
+            #    "if": {"state": "selected"},
+            #    "backgroundColor": "inherit !important",
+            #    "border": "inherit !important",
+           # }  
+        #],
     )
 
     return table

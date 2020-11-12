@@ -13,9 +13,9 @@ def confirmed_cases(department,last_days_nb):
     fig_confirmed.add_trace(
         go.Scatter(
             x=selected_df['jour'].tail(last_days_nb),
-            y=selected_df['nb_pos_cum'].tail(last_days_nb),
+            y=selected_df['Confirmed'].tail(last_days_nb),
             mode="lines",
-            line={"color":"#f9d67a"},
+            line={"color":"#dc9e00"},
             showlegend=False,
             #name="Total Confirmed Cases"
         )
@@ -24,7 +24,7 @@ def confirmed_cases(department,last_days_nb):
         go.Bar(
             x=selected_df['jour'].tail(last_days_nb),
             y=selected_df['nb_pos'].tail(last_days_nb),
-            marker={"color":"#f9d67a"},
+            marker={"color":"#dc9e00"},
             showlegend=False,
             #name="New Confirmed Cases",
 
@@ -35,7 +35,7 @@ def confirmed_cases(department,last_days_nb):
     # LINE CHART ANNOTATION
     fig_confirmed.add_annotation(
          x=selected_df['jour'].tail(1).tolist()[0],
-         y=selected_df['nb_pos_cum'].tail(1).tolist()[0],
+         y=selected_df['Confirmed'].tail(1).tolist()[0],
          text="Total Confirmed Cases",
          font={"size": 14,"color":"#ffffff"},
          xshift=-220,  # Annotation x displacement!
@@ -57,6 +57,7 @@ def confirmed_cases(department,last_days_nb):
         xaxis={"title":"Dates"},
         yaxis={"title":"Number of cases"},
         autosize=True,
+        margin={"r":0,"t":0,"l":0,"b":0},
     )
     
     return fig_confirmed

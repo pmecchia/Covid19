@@ -26,20 +26,23 @@ def plot_map(lat=46.4,lon=0.5,zoom=3.5):
         DF_LAST_UPDATE,
         lat = "lat",
         lon = "long",
-        color = "nb_pos_cum",
+        color = "Confirmed",
         size="scaled",
         size_max = 35,
         hover_name = "dep_name",
-        hover_data = ["nb_pos_cum","dc","death_rate","dep_name"],
+        hover_data = ["Confirmed","dc","death_rate","dep_name"],
         color_continuous_scale = color_scale,
+        
     )
 
     fig.layout.update(
+            margin={"r":0,"t":0,"l":0,"b":0},
             mapbox_style="dark",
             mapbox=dict(center=dict(lat=lat, lon=lon), zoom=zoom),
+            font = dict(color = 'white'),
         )
     fig.data[0].update(
             hovertemplate=("%{customdata[3]}<br>Confirmed:"
-                          " %{customdata[0]}<br>Deaths: %{customdata[1]}@<br>Death Rate: %{customdata[2]}")
+                          " %{customdata[0]}<br>Deaths: %{customdata[1]}<br>Death Rate: %{customdata[2]}")
         )
     return fig

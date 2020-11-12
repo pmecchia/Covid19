@@ -23,7 +23,7 @@ def load_datasets():
     #Merge confirmed cases
     df_test = pd.concat([df_test1,df_test2],ignore_index=True)
     df_test['nb_test_cum']=df_test.groupby("dep")['nb_test'].cumsum()
-    df_test['nb_pos_cum']=df_test.groupby("dep")['nb_pos'].cumsum()
+    df_test['Confirmed']=df_test.groupby("dep")['nb_pos'].cumsum()
 
     #Hospital dataset
     url2="https://www.data.gouv.fr/fr/datasets/r/63352e38-d353-4b54-bfd1-f1b3ee1cabd7"
@@ -35,17 +35,17 @@ def load_datasets():
     df_dep = pd.merge(df_hospital,df_test,on=['dep','jour'])
     df_dep = pd.merge(df_dep,df_coord,on=['dep'])
     df_dep=df_dep.sort_values(['dep','jour'])
-    df_dep["scaled"] = df_dep["nb_pos_cum"] ** 0.77
-    df_dep['death_rate']=round(df_dep['dc']/df_dep['nb_pos_cum']*100,2)
-    df_dep["new_death_rate"]=df_dep.groupby("dep")["death_rate"].apply(lambda row: row-(row.shift(1)))
+    df_dep["scaled"] = df_dep["Confirmed"] ** 0.77
+    df_dep['death_rate']=round(df_dep['dc']/df_dep['Confirmed']*100,2)
+    df_dep["new_death_rate"]=df_dep.groupby("dep")["death_rate"].apply(lambda row: round(row-(row.shift(1)),2))
     df_dep["new_death_rate"].fillna(df_dep["death_rate"], inplace = True) # first date, new_death_rate = death rate
     df_dep["new_dc"]=df_dep.groupby("dep")["dc"].apply(lambda row: row-(row.shift(1)))
     df_dep["new_dc"].fillna(df_dep["dc"], inplace = True) # first date, new_dc = dc
 
     #France dataset
     df_france=df_dep.groupby("jour").sum().reset_index()
-    df_france['death_rate']=round(df_france['dc']/df_france['nb_pos_cum']*100,2)
-    df_france['new_death_rate']=df_france.death_rate-df_france.death_rate.shift(1)
+    df_france['death_rate']=round(df_france['dc']/df_france['Confirmed']*100,2)
+    df_france['new_death_rate']=round(df_france.death_rate-df_france.death_rate.shift(1),2)
     df_france["new_death_rate"].fillna(df_france["death_rate"], inplace = True) # first date, new_death_rate = death rate
     df_france["lat"]=46.40
     df_france["long"]=0.5
@@ -53,8 +53,13 @@ def load_datasets():
     
     #
     df_last_update=df_dep.groupby("dep").tail(1).reset_index(drop=True)
+    
+    df_dep_table= pd.DataFrame(columns=['Departments','Confirmed','Deaths'])
+    df_dep_table['Departments']=df_last_update['dep_name']
+    df_dep_table['Confirmed']=df_last_update['Confirmed']
+    df_dep_table['Deaths']=df_last_update['dc']
 
-    all_df={"departments":df_dep,"country":df_france,"last_update":df_last_update}
+    all_df={"departments":df_dep,"country":df_france,"last_update":df_last_update,"dep_table":df_dep_table}
 
     return all_df
                 
@@ -62,3 +67,4 @@ DATAFRAMES=load_datasets()
 DF_DEPARTMENTS=DATAFRAMES["departments"]
 DF_FRANCE=DATAFRAMES["country"]
 DF_LAST_UPDATE=DATAFRAMES["last_update"]
+DF_DEP_TABLE=DATAFRAMES["dep_table"]

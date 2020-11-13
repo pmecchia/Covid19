@@ -17,7 +17,6 @@ app = dash.Dash(
         "name": "description",
         "content": "Coronavirus statistics and visualizations of number of cases and deaths reported due to the virus."
     }],
-    routes_pathname_prefix='/',
 )
 
 app.title=("France Coronavirus Tracker")

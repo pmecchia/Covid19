@@ -1,6 +1,7 @@
 import pandas as pd
+import os
 
-MAPBOX_ACCESS_TOKEN= "~"
+MAPBOX_ACCESS_TOKEN= os.getenv('MAPBOX_ACCESS_TOKEN')
 zoom_dep=[7.5]*104
 
 DEP_ID= ['01','02','03','04','05','06','07','08','09','10','11','12','13','14'

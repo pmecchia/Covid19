@@ -1,5 +1,5 @@
 import plotly.express as px
-from token_config import MAPBOX_ACCESS_TOKEN
+from static import MAPBOX_ACCESS_TOKEN
 from utils.data import DF_LAST_UPDATE
 
 

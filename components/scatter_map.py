@@ -1,5 +1,5 @@
 import plotly.express as px
-from config import MAPBOX_ACCESS_TOKEN
+from token_config import MAPBOX_ACCESS_TOKEN
 from utils.data import DF_LAST_UPDATE
 
 
@@ -36,7 +36,7 @@ def plot_map(lat=46.4,lon=0.5,zoom=3.5):
     )
 
     fig.layout.update(
-            margin={"r":0,"t":0,"l":0,"b":0},
+            margin={"r":0,"t":15,"l":0,"b":15},
             mapbox_style="dark",
             mapbox=dict(center=dict(lat=lat, lon=lon), zoom=zoom),
             font = dict(color = 'white'),

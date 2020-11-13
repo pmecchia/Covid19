@@ -1,7 +1,7 @@
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
-from config import DEP_LABELS,TIMESTAMP_LABELS
+from static import DEP_LABELS,TIMESTAMP_LABELS
 
 
 
@@ -147,13 +147,13 @@ build_layout = dbc.Container(fluid=True, children=[
             dbc.Col(
                 html.Div(departments_tabs),
                 className="left-column-table-content",
-                width=4,
+                width=3.2,
             ),
             #MAP
             dbc.Col(
                 html.Div(france_map),
                 className="middle-column-map-content",
-                width=8,
+                width=8.8,
             )
         ],
         className="middle-content",
@@ -168,13 +168,13 @@ build_layout = dbc.Container(fluid=True, children=[
                             dbc.Col(
                                 confirmed_chart,
                                 className="top-bottom-left-chart",
-                                width=5,
+                                width=6,
                             ),
                             #Deaths Chart
                             dbc.Col(
                                 deaths_chart,
                                 className="top-bottom-right-chart",
-                                width=5,
+                                width=6,
                             ),
                         ],
                         #no_gutters=True,  

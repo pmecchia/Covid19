@@ -1,5 +1,5 @@
 import pandas as pd
-from config import df_coord
+from static import df_coord
 
 
 def load_datasets():

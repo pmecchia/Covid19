@@ -2,7 +2,6 @@ from typing import List
 from utils.data import DF_FRANCE,DF_LAST_UPDATE
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-import numpy as np
 
 
 def daily_results(department="France") -> List[dbc.Col]:

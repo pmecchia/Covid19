@@ -4,7 +4,7 @@ from components.confirmed_chart import confirmed_cases
 from components.deaths_chart import covid_deaths
 from components.daily_results import daily_results
 from components.departments_table import departments_results
-from config import data
+from static import data
 
 
 def register_callbacks(app):

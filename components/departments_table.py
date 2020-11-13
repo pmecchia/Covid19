@@ -37,11 +37,14 @@ def departments_results(department):
         fill_width=False,
         style_table={
             "width": "100%",
-            "height": "100%",
+            "height": "50%",
         },
         style_header={
             "backgroundColor": color_bg,
-            "border": color_bg,
+            "border-left": color_bg,
+            "border-top": color_bg,
+            "border-right": color_bg,
+            "border-bottom": "0.01rem solid #313841",
             "fontWeight": "bold",
             "font": "Lato, sans-serif",
             "height": "2vw",

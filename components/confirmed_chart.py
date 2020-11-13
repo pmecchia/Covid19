@@ -57,7 +57,7 @@ def confirmed_cases(department,last_days_nb):
         xaxis={"title":"Dates"},
         yaxis={"title":"Number of cases"},
         autosize=True,
-        margin={"r":0,"t":0,"l":0,"b":0},
+        margin={"r":0,"t":23,"l":0,"b":0},
     )
     
     return fig_confirmed

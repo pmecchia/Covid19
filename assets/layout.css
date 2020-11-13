@@ -43,11 +43,48 @@
 }
 
 #Second row
-
+.middle-content.row{
+    margin-bottom: -5 !important;
+}
 .middle-content{
     margin-top: 0 !important;
     border: none;
     justify-content: space-evenly;
+    height:60vh !important;
+}
+
+.left-column-table-content.col-4{
+    height:53vh !important;
+}
+
+.middle-column-map-content.col-8{
+    height:53vh !important;
+}
+
+.results-table-div.card{
+    height: 53vh!important;
+}
+
+
+
+.dash-table-container{
+    height:100vh !important;
+}
+
+.dash-table-container .row::-webkit-scrollbar {
+    scroll-behavior: smooth;
+}
+
+.results-table{
+    scroll-behavior: smooth !important;
+    overflow-y: scroll;
+    
+    /* Disable scroll bar */
+    -ms-overflow-style: none !important;  /* Internet Explorer 10+ */
+}
+
+.results-table::-webkit-scrollbar { 
+    display: none !important;  /* Safari and Chrome */
 }
 
 #Third row
@@ -69,9 +106,8 @@
 .card-body {
     background-color: #000000;
     padding: 1vw;
-    border: none;
-    border-radius: .4rem;
-    /* box-shadow: 0px 5px rgba(0, 0, 0, 0.2); */
+    border: none !important;
+    border-radius: 1%;
 }
 
 
@@ -110,6 +146,7 @@
 
 .lastdays-dropdown .Select-control .Select-value-label {
     color: white !important;
+    opacity:0.5;
     cursor: pointer;
 }
 
@@ -124,7 +161,8 @@
 }
 
 .lastdays-dropdown .Select-arrow {
-    border-color: #f4f4f4 transparent transparent;
+    border-color: white transparent transparent;
+    opacity:0.5;
 }
 
 
@@ -132,6 +170,7 @@
     padding-left: 2%;
     max-width:100%;
     font-size: 1.5vw;
+    color:white;
 }
 
 ##TOP BAR
@@ -266,28 +305,41 @@
 }
 
 .map-card.card{
-    height:100% !important;
+    height:53vh !important;
 }
 
+
 ##BODY
+
+.dash-spreadsheet-container table {
+    /* Change the default color of hover and Selected objects on chart 
+    --accent: none !important;
+    --hover: none !important;
+    --selected-background: none !important;
+    --selected-color: none !important;*/
+    
+}
 
 .dash-spreadsheet-container .dash-spreadsheet-inner table {
     border-collapse: collapse;
     font-family: monospace;
-    --accent: transparent  !important;
+    --accent: #313841  !important;*/
     --border: transparent !important;
     --text-color: transparent !important;
     --hover: transparent !important;
     --background-color-ellipses: transparent !important;
     --faded-text: transparent !important;
-    --faded-text-header: transparent !important;
+    /*--faded-text-header: transparent !important;*/
     --selected-background: transparent !important;
     --faded-dropdown: transparent !important;
     --muted: transparent !important;
 }
 
-
+.card{
+    border:none !important;
+}
 
 body {
   background-color: #192029!important;
 }
+

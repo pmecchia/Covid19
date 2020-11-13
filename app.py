@@ -1,3 +1,4 @@
+import os
 import dash
 import dash_bootstrap_components as dbc
 from layout.layout_body import build_layout
@@ -21,6 +22,7 @@ app = dash.Dash(
 
 app.title=("France Coronavirus Tracker")
 app.layout = build_layout
+server=app.server
 
 
 

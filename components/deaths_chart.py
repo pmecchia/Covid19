@@ -1,5 +1,6 @@
 import plotly.express as px
 import plotly.graph_objects as go
+import numpy as np
 from utils.data import DF_FRANCE,DF_DEPARTMENTS
 
 
@@ -11,6 +12,7 @@ def covid_deaths(department,last_days_nb):
     else:
         selected_df=DF_DEPARTMENTS[DF_DEPARTMENTS["dep_name"]==department]
     
+    yaxis_max=np.log10(selected_df['dc'].tail(1).tolist()[0])+0.5
     fig_deaths = go.Figure()
     fig_deaths.add_trace(
         go.Scatter(
@@ -26,7 +28,7 @@ def covid_deaths(department,last_days_nb):
         go.Bar(
             x=selected_df['jour'].tail(last_days_nb),
             y=selected_df['new_dc'].tail(last_days_nb),
-            marker={"color":"#c94904"},
+            marker={"color":"#e66ee0"},
             showlegend=False,
             #name="New Confirmed Cases",
 
@@ -37,9 +39,9 @@ def covid_deaths(department,last_days_nb):
     # LINE CHART ANNOTATION
     fig_deaths.add_annotation(
          x=selected_df['jour'].tail(1).tolist()[0],
-         y=selected_df['dc'].tail(1).tolist()[0],
+         y=yaxis_max,
          text="Total Deaths",
-         font={"size": 14,"color":"#ffffff"},
+         font={"size": 14,"color":"#c94904"},
          xshift=-220,  # Annotation x displacement!
          showarrow=False,
     )
@@ -47,9 +49,9 @@ def covid_deaths(department,last_days_nb):
     # BAR CHART ANNOTATION
     fig_deaths.add_annotation(
         x=selected_df['jour'].tail(1).tolist()[0],
-        y=selected_df['new_dc'].tail(1).max(),
+        y=np.log10(selected_df['new_dc'].tail(last_days_nb).max()),
         text="New Deaths",
-        font={"size": 14, "color":"#ffffff"},
+        font={"size": 14, "color":"#e66ee0"},
         xshift=-60,  # Annotation x displacement!
         yshift=20,  # Annotation y displacement!
         showarrow=False,
@@ -57,7 +59,8 @@ def covid_deaths(department,last_days_nb):
     fig_deaths.update_layout(
         template="plotly_dark",
         xaxis={"title":"Dates"},
-        yaxis={"title":"Number of deaths"},
+        yaxis=dict(range=[0,yaxis_max],title="Number of deaths"),
+        yaxis_type="log",
         autosize=True,
         margin={"r":0,"t":23,"l":0,"b":0},
     )

@@ -28,7 +28,7 @@ def covid_deaths(department,last_days_nb):
         go.Bar(
             x=selected_df['jour'].tail(last_days_nb),
             y=selected_df['new_dc'].tail(last_days_nb),
-            marker={"color":"#e66ee0"},
+            marker={"color":"#d6885e"},
             showlegend=False,
             #name="New Confirmed Cases",
 
@@ -38,22 +38,22 @@ def covid_deaths(department,last_days_nb):
 
     # LINE CHART ANNOTATION
     fig_deaths.add_annotation(
-         x=selected_df['jour'].tail(1).tolist()[0],
+         x=selected_df['jour'].tail(last_days_nb).tolist()[0],
          y=yaxis_max,
          text="Total Deaths",
          font={"size": 14,"color":"#c94904"},
-         xshift=-220,  # Annotation x displacement!
+         xshift=100,  # Annotation x displacement!
          showarrow=False,
     )
 
     # BAR CHART ANNOTATION
     fig_deaths.add_annotation(
-        x=selected_df['jour'].tail(1).tolist()[0],
+        x=selected_df['jour'].tail(last_days_nb).tolist()[0],
         y=np.log10(selected_df['new_dc'].tail(last_days_nb).max()),
         text="New Deaths",
-        font={"size": 14, "color":"#e66ee0"},
-        xshift=-60,  # Annotation x displacement!
-        yshift=20,  # Annotation y displacement!
+        font={"size": 14, "color":"#d6885e"},
+        xshift=350,  # Annotation x displacement!
+        yshift=10,  # Annotation y displacement!
         showarrow=False,
         )
     fig_deaths.update_layout(

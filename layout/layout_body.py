@@ -138,25 +138,35 @@ build_layout = dbc.Container(fluid=True, children=[
                 className="top-bar-content-col",
             ),
         ],
-        className="row-1",
+        className="row-top",
     ),
     
     dbc.Row(#TABLE AND MAP
-        [   
-            #TABLE
+        [
             dbc.Col(
-                html.Div(departments_tabs),
-                className="left-column-table-content",
-                width=3.2,
+                html.Div(
+                    dbc.Row(
+                        [
+                            #TABLE
+                            dbc.Col(
+                                departments_tabs,
+                                className="left-column-table-content",
+                                width=4,
+                            ),
+                            #MAP
+                            dbc.Col(
+                                france_map,
+                                className="middle-column-map-content",
+                                width=8,
+                            ),
+                        ],
+                    ),
+                    className="middle-content",
+                ),
+                className="middle-row",
             ),
-            #MAP
-            dbc.Col(
-                html.Div(france_map),
-                className="middle-column-map-content",
-                width=8.8,
-            )
         ],
-        className="middle-content",
+        
     ),
     dbc.Row(#CHARTS
         [
@@ -178,7 +188,7 @@ build_layout = dbc.Container(fluid=True, children=[
                             ),
                         ],
                         #no_gutters=True,  
-                        className="test"
+                        #className="test"
                     ),
                     className="bottom-charts"
                 ),

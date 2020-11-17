@@ -4,7 +4,7 @@ from utils.data import DF_LAST_UPDATE
 
 
 
-
+#access token key
 px.set_mapbox_access_token(MAPBOX_ACCESS_TOKEN)
 
 def plot_map(lat=46.4,lon=0.5,zoom=3.5):    

@@ -5,6 +5,8 @@ from utils.data import DF_FRANCE,DF_DEPARTMENTS
 
 
 def confirmed_cases(department,last_days_nb): 
+    
+    #select dataframe 
     if department == "France":
         selected_df=DF_FRANCE
     else:
@@ -19,7 +21,6 @@ def confirmed_cases(department,last_days_nb):
             mode="lines",
             line={"color":"#dc9e00"},
             showlegend=False,
-            #name="Total Confirmed Cases"
         )
     )
     fig_confirmed.add_trace(
@@ -28,7 +29,6 @@ def confirmed_cases(department,last_days_nb):
             y=selected_df['nb_pos'].tail(last_days_nb),
             marker={"color":"#f9d67a"},
             showlegend=False,
-            #name="New Confirmed Cases",
 
         )
     )

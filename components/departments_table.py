@@ -8,12 +8,9 @@ import pandas as pd
 
 def departments_results(department):
     
-    font_size = ".9vw"
-    color_active = "#F4F4F4"
-    color_inactive = "#AEAEAE"
     color_bg = "#000000"
-    
     font_size_body = ".9vw"
+    
     table = dash_table.DataTable(
         data=DF_DEP_TABLE.to_dict("records"),
         columns=[
@@ -67,32 +64,17 @@ def departments_results(department):
         style_cell_conditional=[
             {
                 "if": {"column_id": "Departments",},
-                #"minWidth": "4vw",
-                #"width": "33%",
-                #"maxWidth": "33%",
             },
             {
                 "if": {"column_id": "Confirmed",},
                 "color": "#dc9e00",
-                #"minWidth": "4vw",
-                #"width": "33%",
-                #"maxWidth": "33%",
             },
             {
                 "if": {"column_id": "Deaths",},
                 "color": "#c94904",
-                #"minWidth": "4vw",
-                #"width": "33%",
-                #"maxWidth": "33%",
             },
         ],
-        #style_data_conditional=[                
-            #{
-            #    "if": {"state": "selected"},
-            #    "backgroundColor": "inherit !important",
-            #    "border": "inherit !important",
-           # }  
-        #],
+       
     )
 
     return table

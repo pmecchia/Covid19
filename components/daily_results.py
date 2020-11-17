@@ -11,6 +11,7 @@ def daily_results(department="France") -> List[dbc.Col]:
     :return cols: A list of plotly dash boostrap components Card objects
     displaying tested, confirmed, deaths.
     """
+    #select department or France dataframe
     if department=="France":
         df_selected=DF_FRANCE.tail(1)
     else:
@@ -23,8 +24,9 @@ def daily_results(department="France") -> List[dbc.Col]:
     number_new_dc=df_selected.iloc[0]["new_dc"]
     number_dc=df_selected.iloc[0]["dc"]
     new_death_rate=df_selected.iloc[0]["new_death_rate"]
-    # 2. Dynamically generate list of dbc Cols. Each Col contains a single
-    #    Card. Each card displays items and values 
+    
+    # Dynamically generate list of dbc Cols. Each Col contains a single Card. 
+    #Each card displays items and values 
     cards = []
     card=0
     for columns in df_selected:
@@ -118,9 +120,10 @@ def daily_results(department="France") -> List[dbc.Col]:
                 width=2.5,
                 className="top-bar-card-body",
             )
+
         if card != 0:
             cards.append(card)
-            card=0
+            card=0 #reset card
             
     #change card positions
     cards[0], cards[1] = cards[1], cards[0]

@@ -9,10 +9,6 @@ from static import data
 
 def register_callbacks(app):
     
-    
-    
-    
-    
     #MAP CALLBACK
     
     @app.callback(
@@ -51,7 +47,7 @@ def register_callbacks(app):
     @app.callback(
         [Output("confirmed-chart-title", "children")],
         [Input("departments-dropdown", "value")],
-    )                                                   # pylint: disable=W0612
+    )                                                  
     def confirmed_cases_chart_title_callback(state="France"):
         return [f"{state} Confirmed Cases"]
     
@@ -71,7 +67,7 @@ def register_callbacks(app):
     @app.callback(
         [Output("deaths-chart-title", "children")],
         [Input("departments-dropdown", "value")],
-    )                                                   # pylint: disable=W0612
+    )                                                   
     def deaths_chart_title_callback(state="France"):
         return [f"{state} Deaths"]
 
